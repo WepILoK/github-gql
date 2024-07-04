@@ -1,5 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
-import {MainLayout} from "shared/ui/MainLayout";
+import {MainLayout} from "shared/ui";
+import {RepositoriesPage} from "../../pages/RepositoriesPage";
+import {RepositoryPage} from "../../pages/RepositoryPage";
 
 export const router = createBrowserRouter([
     {
@@ -8,11 +10,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <>core</>
+                element: <RepositoriesPage/>
             },
             {
-                path: "id",
-                element: <>rep detail</>
+                path: ":id",
+                element: <RepositoryPage/>
             }
         ]
     }

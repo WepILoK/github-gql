@@ -1,0 +1,24 @@
+.button {
+  padding: 8px 12px;
+  margin: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ececec;
+  background-color: #3f3f3f;
+  &:hover {
+    box-shadow: 2px 2px 3px 0px rgba(187, 187, 187, 0.2);
+  }
+  &:active {
+    background-color: #464646;
+    box-shadow: 2px 2px 3px 0px rgba(196, 196, 196, 0.2);
+  }
+  &:disabled {
+    color: #d5d5d5;
+    background-color: #3f3f3f;
+    box-shadow: none;
+    cursor: default;
+  }
+}

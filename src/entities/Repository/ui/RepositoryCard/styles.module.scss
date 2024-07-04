@@ -1,0 +1,59 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  height: 150px;
+
+  background-color: #0d1117;
+  border-color: #30363d;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    text-align: center;
+    padding: 8px;
+    justify-content: space-between;
+    color: white;
+
+    a {
+      padding: 8px;
+    }
+
+    .headline {
+      text-decoration: none;
+      max-width: 300px;
+    }
+
+    .github {
+      color: rgb(68, 147, 248);
+      font-weight: 400;
+      font-size: 15px;
+    }
+
+    .starCount {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-content: center;
+      padding-right: 8px;
+
+      .count {
+        font-size: 16px;
+        padding-right: 6px;
+        padding-top: 4px;
+      }
+    }
+
+    .date {
+      color: rgb(141, 150, 160);
+      font-weight: 400;
+    }
+
+  }
+
+}

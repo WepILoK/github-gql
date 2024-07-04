@@ -1,8 +1,9 @@
 import {Outlet} from "react-router-dom";
-import "./MainLayout.sass"
+import styles from "./MainLayout.module.scss"
+
 export const MainLayout = () => {
 
-    return <div>
+    return <div className={styles.layout}>
         <Outlet/>
     </div>
 }
