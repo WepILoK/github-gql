@@ -1,0 +1,10 @@
+.repositories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(465px, 1fr));
+  align-content: start;
+  grid-gap: 10px;
+  justify-content: center;
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+  margin: 8px 0;
+}

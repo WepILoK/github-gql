@@ -1,4 +1,4 @@
-export type RepositoryItem = {
+export type RepositoryCard = {
     id: string,
     name: string,
     stargazerCount: number,

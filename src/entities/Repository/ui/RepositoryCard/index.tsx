@@ -3,13 +3,14 @@ import {Headline} from "shared/ui";
 import star from "shared/ui/icon/star.svg"
 import {dateToRUFormat} from "shared/utils";
 import {Link} from "react-router-dom";
+import React from "react";
 
-export const RepositoryCard = () => {
+export const RepositoryCard: React.FC<{ name }> = ({name}) => {
     return <div className={styles.card}>
         <div className={styles.content}>
             <Link className={styles.headline}
-               to={"/"}>
-                <Headline text={"backend-anime-site backend-anime-site backend-anime-site backend-anime-site"}/>
+                  to={"/"}>
+                <Headline text={name}/>
             </Link>
             <a className={styles.github}
                href={"/"} target={"_blank"}>

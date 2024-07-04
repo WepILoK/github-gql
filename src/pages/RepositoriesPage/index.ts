@@ -1,1 +1,1 @@
-export {RepositoriesPage} from "./ui.tsx"
+export * from "./ui"

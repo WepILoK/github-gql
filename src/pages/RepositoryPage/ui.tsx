@@ -1,5 +1,10 @@
-export const RepositoryPage = () => {
-    return <div>
+import styles from "./styles.module.scss"
+import {RepositoryCardDetails} from "../../entities/Repository";
 
-    </div>
+export const RepositoryPage = () => {
+    return (
+        <div className={styles}>
+            <RepositoryCardDetails/>
+        </div>
+    )
 }
