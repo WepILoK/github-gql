@@ -36,6 +36,7 @@ export const SearchIRepositoryInput = () => {
                 name: searchParams.get("search"),
                 page: Number(searchParams.get("page"))
             })
+            setSearchText(searchParams.get("search"))
         } else {
             fetchRepositoriesFx({
                 login: searchParams.get("login") || localStorage.getItem("login"),

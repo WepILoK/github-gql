@@ -1,37 +1,37 @@
 import styles from "./styles.module.scss";
 import {Headline, Avatar} from "shared/ui";
 import {dateToRUFormat, numWord} from "shared/utils";
+import React from "react";
+import {RepositoryDetailsType} from "../../model";
 
-export const RepositoryCardDetails = () => {
+export const RepositoryCardDetails: React.FC<RepositoryDetailsType> = ({name,owner,languages,stargazerCount,description}) => {
     return (
         <div className={styles.card}>
             <div className={styles.header}>
                 <div className={styles.headline}>
                     <Headline
-                        text={"Название репозиторияНазвание репозиторияНазвание репозиторияНазвание репозиторияНазвание репозитория"}/>
+                        text={name}/>
                 </div>
                 <div className={styles.stars}>
-                    4 {numWord(4, ["звёзда", "звёзды", "звёзд"])} на github
+                    {stargazerCount} {numWord(stargazerCount, ["звёзда", "звёзды", "звёзд"])} на github
                 </div>
                 <div className={styles.date}>
                     Дата последнего коммита - {dateToRUFormat("")}
                 </div>
             </div>
             <div className={styles.user}>
-                <Avatar/>
-                <a className={styles.nickname} href={"/44"}>
-                    PetyaPalo4kin
+                <Avatar src={owner.avatarUrl}/>
+                <a className={styles.nickname} href={owner.url} target={"_blank"}>
+                    {owner.login}
                 </a>
             </div>
             <div className={styles.languages}>
                 <ul>
-                    <li>Java</li>
-                    <li>Piton</li>
-                    <li>EptaSctipt</li>
+                    {languages.nodes.map((lang) => <li key={lang.name}>{lang.name}</li>)}
                 </ul>
             </div>
             <div className={styles.description}>
-                No description, website, or topics provided.
+                {description ? description : "No description, website, or topics provided."}
             </div>
         </div>
     )

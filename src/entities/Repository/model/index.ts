@@ -1,6 +1,6 @@
 import {createEffect} from "effector/compat";
-import {getRepositories} from "../api";
-import {createStore} from "effector";
+import {getRepositories, getRepositoryDetails} from "../api";
+import {createEvent, createStore} from "effector";
 
 export type RepositoryCardType = {
     id: string,
@@ -48,3 +48,32 @@ export type RepositoryState = {
 
 export const $searchData = createStore<RepositoryState>({})
     .on(fetchRepositoriesFx.doneData, (_, payload) => payload)
+
+export type RepositoryDetailsType = {
+    name: string
+    description: string | null
+    stargazerCount: number
+    owner: {
+        login: string
+        avatarUrl: string
+        url: string
+    }
+    languages: { nodes: { name: string }[] }
+}
+
+export type RepositoryDetailsStateType = {
+    repository?: RepositoryDetailsType
+}
+
+export const fetchRepositoryDetailsFx = createEffect<{
+    owner: string,
+    name: string,
+}, RepositoryDetailsStateType, Error>(async (variables) => {
+    return await getRepositoryDetails(variables)
+})
+export const $event = createEvent()
+
+export const $repositoryDetail = createStore<RepositoryDetailsStateType>({})
+    .on(fetchRepositoryDetailsFx.doneData, (_, payload) => payload)
+    .on($event, () => {return {}})
+

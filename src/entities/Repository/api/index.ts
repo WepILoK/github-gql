@@ -1,56 +1,27 @@
-import {ApolloQueryResult, gql} from "@apollo/client";
+import {ApolloQueryResult} from "@apollo/client";
 import {client} from "shared/api";
+import {RepositoryDetailsType, RepositoryState} from "../model";
+import {GET_REPOSITORIES, GET_REPOSITORY_DETAILS} from "./gql.tsx";
 
-const GET_REPOSITORIES = gql`
-    query getRepositories($query: String!, $after: String){
-      search(
-        type:REPOSITORY,
-        query: $query,
-        first: 10,
-        after: $after
-      ) {
-        repositoryCount
-        repos: edges{
-          repo: node{
-            ... on Repository {
-              id,
-              url,
-              name,
-              owner {
-                id
-                login
-              }
-              stargazerCount,
-              defaultBranchRef {
-                target {
-                  ... on Commit {
-                    history(first: 1) {
-                      nodes {
-                        committedDate
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        pageInfo {
-          endCursor
-          startCursor
-          hasNextPage
-          hasPreviousPage
-        }
-      }
-}`
 
 export const getRepositories = async (variables:{
     query: string,
     after: string,
 }) => {
-    const resp: ApolloQueryResult<any> = await client.query({
+    const resp: ApolloQueryResult<{search: RepositoryState}> = await client.query({
         query: GET_REPOSITORIES,
         variables: variables
     })
     return resp.data.search
+}
+
+export const getRepositoryDetails = async (variables:{
+    owner: string,
+    name: string,
+}) => {
+    const resp: ApolloQueryResult<{repository: RepositoryDetailsType}> = await client.query({
+        query: GET_REPOSITORY_DETAILS,
+        variables: variables
+    })
+    return resp.data
 }

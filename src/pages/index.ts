@@ -1,2 +1,2 @@
-export * from "./RepositoryPage"
+export * from "./RepositoryDetailsPage"
 export * from "./RepositoriesPage"

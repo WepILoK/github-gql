@@ -12,7 +12,7 @@ export const RepositoryCard: React.FC<RepositoryCardType> = ({name,url,stargazer
             <Link className={styles.headline}
                   to={`/${id}`}
                   state={{
-                      owner,name
+                      owner: owner.login,name
                   }}
             >
                 <Headline text={name}/>
