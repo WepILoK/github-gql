@@ -1,6 +1,5 @@
-import {createEffect} from "effector";
-import {client} from "../../shared/api";
 import {ApolloQueryResult, gql} from "@apollo/client";
+import {client} from "./client.ts";
 
 const GET_USER_LOGIN = gql`
     query {
@@ -16,10 +15,12 @@ type FetchUserLoginType = {
     }
 }
 
-export const fetchUserLoginFx = createEffect<void, string, Error>(async () => {
-    const reps:ApolloQueryResult<FetchUserLoginType> = await client.query({
+export const fetchUserLogin = async () => {
+    const resp: ApolloQueryResult<FetchUserLoginType> = await client.query({
         query: GET_USER_LOGIN,
         variables: {}
     })
-    return reps.data.viewer.login
-})
+    const login = resp.data.viewer.login
+    localStorage.setItem('login', login)
+    return login
+}

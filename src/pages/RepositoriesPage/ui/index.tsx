@@ -1,26 +1,26 @@
 import {useEffect} from "react";
-import {Input} from "shared/ui";
-import {RepositoryCard} from "entities/Repository";
-import styles from "../styles.module.scss"
-import {$searchData, fetchRepositoriesFx} from "../model";
+import styles from "./styles.module.scss"
+import {$searchData, fetchRepositoriesFx, RepositoryCard} from "entities/Repository";
 import {useUnit} from "effector-react";
+import {SearchIRepositoryInput} from "features/SearchIRepositoryInput";
+import {Pagination} from "../../../features/Pagination";
+import {Loader} from "../../../shared/ui";
 
 export const RepositoriesPage = () => {
-    const [data,fetchRepositories] = useUnit([$searchData, fetchRepositoriesFx])
-    useEffect(() => {
-        fetchRepositories({name: "fafa"})
-    }, [])
-
-    useEffect(() => {
-        console.log(data);
-    }, [data])
+    const [data, isLoading] = useUnit([$searchData, fetchRepositoriesFx.pending])
 
     return <div>
-        <Input/>
+        <SearchIRepositoryInput/>
         <div className={styles.repositories}>
-            {data.repos?.map(({repo})=> (
-                <RepositoryCard key={repo.id} name={repo.name}/>
-            ))}
+            {isLoading && <Loader/>}
+            {!isLoading &&
+                <div className={styles.data}>
+                    {data.repos?.map(({repo}) => (
+                        <RepositoryCard key={repo.id} {...repo}/>
+                    ))}
+                </div>
+            }
         </div>
+        <Pagination/>
     </div>
 }

@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
-import {Avatar, Headline} from "../../../../shared/ui";
-import {dateToRUFormat, numWord} from "../../../../shared/utils";
+import {Headline, Avatar} from "shared/ui";
+import {dateToRUFormat, numWord} from "shared/utils";
 
 export const RepositoryCardDetails = () => {
     return (

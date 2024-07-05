@@ -7,7 +7,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #ececec;
-  background-color: #3f3f3f;
+  background-color: #3b3b3b;
   &:hover {
     box-shadow: 2px 2px 3px 0px rgba(187, 187, 187, 0.2);
   }
@@ -21,4 +21,8 @@
     box-shadow: none;
     cursor: default;
   }
+}
+.active {
+  background-color: #797979;
+  box-shadow: 2px 2px 3px 0px rgba(196, 196, 196, 0.2);
 }

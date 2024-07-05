@@ -1,5 +1,5 @@
 import {ApolloQueryResult, gql} from "@apollo/client";
-import {client} from "../../../shared/api";
+import {client} from "shared/api";
 
 const GET_REPOSITORIES = gql`
     query getRepositories($query: String!, $after: String){
@@ -9,12 +9,17 @@ const GET_REPOSITORIES = gql`
         first: 10,
         after: $after
       ) {
+        repositoryCount
         repos: edges{
           repo: node{
             ... on Repository {
               id,
               url,
               name,
+              owner {
+                id
+                login
+              }
               stargazerCount,
               defaultBranchRef {
                 target {
@@ -39,10 +44,13 @@ const GET_REPOSITORIES = gql`
       }
 }`
 
-export const getRepositories = async () => {
-    const reps: ApolloQueryResult<any> = await client.query({
+export const getRepositories = async (variables:{
+    query: string,
+    after: string,
+}) => {
+    const resp: ApolloQueryResult<any> = await client.query({
         query: GET_REPOSITORIES,
-        variables: {query: "is:public sort:updated react in:name user:WepILoK", after: ''}
+        variables: variables
     })
-    return reps.data.search
+    return resp.data.search
 }
