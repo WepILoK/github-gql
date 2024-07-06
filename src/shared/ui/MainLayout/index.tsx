@@ -10,7 +10,7 @@ export const MainLayout = () => {
     useEffect(() => {
         fetchUserLoginFx()
             .then((data) => {
-                if(data && searchParams.size === 0 && location.pathname === "/") {
+                if(data && searchParams.size === 0 && location.pathname === "/github-gql/") {
                     setSearchParams({
                         login: data,
                         page: "1"

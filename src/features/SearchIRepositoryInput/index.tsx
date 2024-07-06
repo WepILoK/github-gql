@@ -1,5 +1,5 @@
 import {Button, Input} from "shared/ui";
-import {fetchRepositoriesFx} from "../../entities/Repository";
+import {fetchRepositoriesFx} from "entities/Repository";
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import styles from "./styles.module.scss"
@@ -19,7 +19,7 @@ export const SearchIRepositoryInput = () => {
         } else {
             setSearchParams(prev => {
                 prev.delete("search")
-                prev.set("login", localStorage.getItem("login"))
+                prev.set("login", localStorage.getItem("login") || "")
                 prev.set("page", "1")
                 return prev
             })
@@ -36,7 +36,7 @@ export const SearchIRepositoryInput = () => {
                 name: searchParams.get("search"),
                 page: Number(searchParams.get("page"))
             })
-            setSearchText(searchParams.get("search"))
+            setSearchText(searchParams.get("search") || "")
         } else {
             fetchRepositoriesFx({
                 login: searchParams.get("login") || localStorage.getItem("login"),

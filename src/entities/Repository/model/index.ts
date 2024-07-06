@@ -21,12 +21,12 @@ export type RepositoryCardType = {
 }
 
 export const fetchRepositoriesFx = createEffect<{
-    name?: string,
-    page?: number,
-    login?: string
-}, RepositoryState, Error>(async ({name = "", page, login}) => {
+    name?: string | null,
+    page?: number | null,
+    login?: string | null
+}, RepositoryState, Error>(async ({name = "", page = 0, login}) => {
     const userQuery = (login && !name) ? `user:${login}` : ""
-    const after = page > 1 ? btoa(String(`cursor:${(page - 1) * 10}`)) : ""
+    const after = page && page > 1 ? btoa(String(`cursor:${(page - 1) * 10}`)) : ""
     const variables = {
         query: `sort:updated ${name} in:name ${userQuery}`,
         first: 10,
@@ -75,5 +75,7 @@ export const $event = createEvent()
 
 export const $repositoryDetail = createStore<RepositoryDetailsStateType>({})
     .on(fetchRepositoryDetailsFx.doneData, (_, payload) => payload)
-    .on($event, () => {return {}})
+    .on($event, () => {
+        return {}
+    })
 

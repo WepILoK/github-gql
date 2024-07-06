@@ -1,10 +1,10 @@
 import {createBrowserRouter} from "react-router-dom";
 import {MainLayout} from "shared/ui";
-import {RepositoriesPage ,RepositoryPage} from "pages";
+import {RepositoriesPage ,RepositoryDetailsPage} from "pages";
 
 export const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/github-gql/",
         element: <MainLayout/>,
         children: [
             {
@@ -12,8 +12,8 @@ export const router = createBrowserRouter([
                 element: <RepositoriesPage/>
             },
             {
-                path: ":id",
-                element: <RepositoryPage/>
+                path: "/github-gql/:id",
+                element: <RepositoryDetailsPage/>
             }
         ]
     }

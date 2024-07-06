@@ -8,7 +8,7 @@ import {useSearchParams} from "react-router-dom";
 export const Pagination: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [data, isLoading] = useUnit([$searchData, fetchRepositoriesFx.pending])
-    const maxPages = Math.round(data.repositoryCount / 10)
+    const maxPages = data.repositoryCount ? Math.round(data.repositoryCount / 10) : 0
     const [searchParams, setSearchParams] = useSearchParams();
 
     const paginationNumbersArray = () => {
@@ -22,7 +22,7 @@ export const Pagination: React.FC = () => {
     const selectPage = (num: number) => {
         if (currentPage === num) return
         setCurrentPage(num)
-        if (searchParams.get("page") != num) {
+        if (Number(searchParams.get("page")) != num) {
             setSearchParams(prev => {
                 prev.set("page", String(num))
                 return prev

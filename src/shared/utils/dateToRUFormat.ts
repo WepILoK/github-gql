@@ -1,5 +1,5 @@
 export const dateToRUFormat = (date: string) => {
+    if(!date) return "А нету даты)"
     const result = new Date(date)
-    if(result == "Invalid Date") return "А нету даты)"
-    return new Intl.DateTimeFormat('ru-RU').format(new Date(date))
+    return new Intl.DateTimeFormat('ru-RU').format(result)
 }
