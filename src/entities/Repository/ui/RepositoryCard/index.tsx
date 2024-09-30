@@ -10,7 +10,7 @@ export const RepositoryCard: React.FC<RepositoryCardType> = ({name,url,stargazer
     return <div className={styles.card}>
         <div className={styles.content}>
             <Link className={styles.headline}
-                  to={`/${id}`}
+                  to={`/github-gql/${id}`}
                   state={{
                       owner: owner.login,name
                   }}
