@@ -6,6 +6,17 @@ export const GET_REPOSITORY_DETAILS = gql`
         name
         description
         stargazerCount
+        defaultBranchRef {
+                target {
+                  ... on Commit {
+                    history(first: 1) {
+                      nodes {
+                        committedDate
+                      }
+                    }
+                  }
+                }
+              }
         owner {
           login
           avatarUrl

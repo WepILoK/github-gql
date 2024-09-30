@@ -53,6 +53,15 @@ export type RepositoryDetailsType = {
     name: string
     description: string | null
     stargazerCount: number
+    defaultBranchRef: {
+        target: {
+            history: {
+                nodes: [
+                    { committedDate: string }
+                ]
+            }
+        }
+    }
     owner: {
         login: string
         avatarUrl: string

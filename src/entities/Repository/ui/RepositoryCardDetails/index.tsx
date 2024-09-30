@@ -4,7 +4,7 @@ import {dateToRUFormat, numWord} from "shared/utils";
 import React from "react";
 import {RepositoryDetailsType} from "../../model";
 
-export const RepositoryCardDetails: React.FC<RepositoryDetailsType> = ({name,owner,languages,stargazerCount,description}) => {
+export const RepositoryCardDetails: React.FC<RepositoryDetailsType> = ({name,owner,languages,stargazerCount,description, defaultBranchRef}) => {
     return (
         <div className={styles.card}>
             <div className={styles.header}>
@@ -16,7 +16,7 @@ export const RepositoryCardDetails: React.FC<RepositoryDetailsType> = ({name,own
                     {stargazerCount} {numWord(stargazerCount, ["звёзда", "звёзды", "звёзд"])} на github
                 </div>
                 <div className={styles.date}>
-                    Дата последнего коммита - {dateToRUFormat("")}
+                    Дата последнего коммита - {dateToRUFormat(defaultBranchRef.target.history.nodes[0].committedDate)}
                 </div>
             </div>
             <div className={styles.user}>
